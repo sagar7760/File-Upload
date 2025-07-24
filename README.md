@@ -161,6 +161,13 @@ uploads/
 └── README.md             # This file
 ```
 
+**Why Two Folder Structures?**
+- `server.js` + `public/` →to run the applicaton Locally in you computer
+- `api/` + `public/` → Serverless deployment (Vercel)
+- `server.js` handles all routes in one process, while `api/*.js` creates individual serverless functions
+- Both approaches serve the same `public/` files but use different backend architectures
+
+
 ### Adding Custom Email Templates
 
 The email content is defined in the `server.js` file. You can customize the HTML template in the `/send-upload-link` route.

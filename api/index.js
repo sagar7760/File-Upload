@@ -151,10 +151,10 @@ module.exports = (req, res) => {
         }
         
         .warning {
-            background-color: #fff3cd;
-            color: #856404;
+            background-color: #fff2c5ff;
+            color: #fadc82ff;
             border: 1px solid #ffeaa7;
-            padding: 15px;
+            padding: 10px;
             border-radius: 8px;
             margin-bottom: 20px;
         }
@@ -165,7 +165,7 @@ module.exports = (req, res) => {
         <h1>📧 File Upload Service</h1>
         
         <div class="warning">
-            <strong>⚠️ Demo Mode:</strong> 
+            <strong>⚠️ Demo Mode</strong> 
         </div>
         
         <div id="alert" class="alert"></div>
