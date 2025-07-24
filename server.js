@@ -49,13 +49,13 @@ fs.ensureDirSync(uploadsDir);
 
 // Storage configuration for multer
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
+  destination: (req,  cb) => {
     const uploadToken = req.params.token;
     const userUploadDir = path.join(uploadsDir, uploadToken);
     fs.ensureDirSync(userUploadDir);
     cb(null, userUploadDir);
   },
-  filename: (req, file, cb) => {
+  filename: (file, cb) => {
     // Generate unique filename with timestamp
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     const fileExtension = path.extname(file.originalname);
@@ -65,7 +65,7 @@ const storage = multer.diskStorage({
 });
 
 // File filter for allowed file types
-const fileFilter = (req, file, cb) => {
+const fileFilter = ( file, cb) => {
   const allowedTypes = ['.pdf', '.doc', '.docx', '.txt', '.rtf'];
   const fileExtension = path.extname(file.originalname).toLowerCase();
   
