@@ -152,7 +152,7 @@ module.exports = (req, res) => {
         
         .warning {
             background-color: #fff2c5ff;
-            color: #fadc82ff;
+            color: #ffa08dff;
             border: 1px solid #ffeaa7;
             padding: 10px;
             border-radius: 8px;
