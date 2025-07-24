@@ -7,14 +7,20 @@
   },
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/",
       "dest": "/api/index.js"
+    },
+    {
+      "src": "/upload/(.*)",
+      "dest": "/api/upload.js"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
     }
-  ],
-  "env": {
-    "EMAIL_SERVICE": "@email_service",
-    "EMAIL_USER": "@email_user", 
-    "EMAIL_PASS": "@email_pass",
-    "JWT_SECRET": "@jwt_secret"
-  }
+  ]
 }
