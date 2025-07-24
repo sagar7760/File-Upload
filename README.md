@@ -219,6 +219,3 @@ To add support for additional file types:
 
 MIT License - see LICENSE file for details.
 
-## Support
-
-For issues and questions, please check the troubleshooting section or create an issue in the project repository.
