@@ -7,20 +7,28 @@
   },
   "routes": [
     {
-      "src": "/",
-      "dest": "/api/index.js"
+      "src": "/send-upload-link",
+      "dest": "/api/send-upload-link.js"
     },
     {
       "src": "/upload/(.*)",
       "dest": "/api/upload.js"
     },
     {
+      "src": "/status/(.*)",
+      "dest": "/api/status.js"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "/api/$1.js"
     },
     {
+      "src": "/",
+      "dest": "/api/index.js"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/public/$1"
+      "dest": "/api/index.js"
     }
   ]
 }

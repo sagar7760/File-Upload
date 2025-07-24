@@ -15,12 +15,30 @@ const createEmailTransporter = () => {
   });
 };
 
+// Simple body parser for Vercel
+const parseBody = (req) => {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+    req.on('end', () => {
+      try {
+        resolve(body ? JSON.parse(body) : {});
+      } catch (error) {
+        reject(error);
+      }
+    });
+  });
+};
+
 module.exports = async (req, res) => {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+  res.setHeader('Content-Type', 'application/json');
 
   if (req.method === 'OPTIONS') {
     res.status(200).end();
@@ -32,7 +50,9 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { recipientEmail, senderName, message } = req.body;
+    // Parse request body
+    const body = await parseBody(req);
+    const { recipientEmail, senderName, message } = body;
     
     if (!recipientEmail) {
       return res.status(400).json({ error: 'Recipient email is required' });

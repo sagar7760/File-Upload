@@ -165,7 +165,7 @@ module.exports = (req, res) => {
         <h1>📧 File Upload Service</h1>
         
         <div class="warning">
-            <strong>⚠️ Demo Mode:</strong> This is deployed on Vercel with limitations. Files will be stored temporarily and tokens won't persist between deployments.
+            <strong>⚠️ Demo Mode:</strong> 
         </div>
         
         <div id="alert" class="alert"></div>
