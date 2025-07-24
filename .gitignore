@@ -6,10 +6,7 @@ yarn-error.log*
 
 # Environment variables
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+
 
 # Uploaded files
 uploads/
@@ -26,9 +23,7 @@ pids
 
 # Coverage directory used by tools like istanbul
 coverage/
-
-# nyc test coverage
-.nyc_output
+uploads/
 
 # Dependency directories
 node_modules/
@@ -62,7 +57,7 @@ ehthumbs.db
 Thumbs.db
 
 # IDE files
-.vscode/settings.json
+.vscode/tasks.json
 .idea/
 *.swp
 *.swo
