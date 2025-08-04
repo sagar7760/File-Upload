@@ -7,6 +7,10 @@
   },
   "routes": [
     {
+      "src": "/test-env",
+      "dest": "/api/test-env.js"
+    },
+    {
       "src": "/send-upload-link",
       "dest": "/api/send-upload-link.js"
     },
