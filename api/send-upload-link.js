@@ -380,6 +380,13 @@ module.exports = async (req, res) => {
 
     // Send email with AMP support
     const transporter = createEmailTransporter();
+    
+    console.log('📧 Attempting to send email...');
+    console.log('📝 Email service:', process.env.EMAIL_SERVICE);
+    console.log('👤 Email user:', process.env.EMAIL_USER ? process.env.EMAIL_USER.substring(0, 5) + '***' : 'NOT SET');
+    console.log('🔑 Email pass:', process.env.EMAIL_PASS ? 'SET (length: ' + process.env.EMAIL_PASS.length + ')' : 'NOT SET');
+    console.log('📨 Sending to:', recipientEmail);
+    
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: recipientEmail,
@@ -401,7 +408,28 @@ module.exports = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ error: 'Failed to send email. Please check your email configuration.' });
+    console.error('❌ Email sending error:', error);
+    console.error('📋 Error message:', error.message);
+    console.error('📋 Error code:', error.code);
+    console.error('📋 Error stack:', error.stack);
+    
+    // More specific error handling
+    let errorMessage = 'Failed to send email. ';
+    
+    if (error.code === 'EAUTH') {
+      errorMessage += 'Authentication failed. Please check your email credentials.';
+    } else if (error.code === 'ENOTFOUND') {
+      errorMessage += 'Network error. Please check your internet connection.';
+    } else if (error.message && error.message.includes('Invalid login')) {
+      errorMessage += 'Invalid email login credentials.';
+    } else {
+      errorMessage += 'Please check your email configuration. Error: ' + error.message;
+    }
+    
+    res.status(500).json({ 
+      error: errorMessage,
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined,
+      code: error.code
+    });
   }
 };
