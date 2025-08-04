@@ -7,8 +7,7 @@ yarn-error.log*
 
 # Environment variables
 .env
-# Vercel deployment files
-VERCEL_ENV_SETUP.md
+
 # Profile data storage (for local development)
 data/
 

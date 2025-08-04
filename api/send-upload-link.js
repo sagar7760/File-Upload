@@ -1,4 +1,13 @@
-const nodemailer = require('nodemailer');
+// Try different ways to import nodemailer to handle Vercel compatibility
+let nodemailer;
+try {
+  nodemailer = require('nodemailer');
+  console.log('✅ Nodemailer imported successfully');
+} catch (error) {
+  console.error('❌ Failed to import nodemailer:', error);
+  throw new Error('Nodemailer import failed: ' + error.message);
+}
+
 const { v4: uuidv4 } = require('uuid');
 
 // In-memory storage (not persistent in serverless)
@@ -8,10 +17,21 @@ const uploadTokens = new Map();
 const createEmailTransporter = () => {
   try {
     console.log('📧 Creating email transporter...');
-    console.log('📦 Nodemailer version:', require('nodemailer/package.json').version);
+    
+    // Check if nodemailer and createTransport are available
+    if (!nodemailer) {
+      throw new Error('Nodemailer module not loaded');
+    }
+    
+    if (typeof nodemailer.createTransport !== 'function') {
+      console.error('❌ nodemailer.createTransport is not a function');
+      console.error('📦 Nodemailer object keys:', Object.keys(nodemailer));
+      throw new Error('createTransport method not available on nodemailer object');
+    }
+    
     console.log('🔧 Email service:', process.env.EMAIL_SERVICE || 'gmail');
     
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: process.env.EMAIL_SERVICE || 'gmail',
       auth: {
         user: process.env.EMAIL_USER,
@@ -395,10 +415,7 @@ module.exports = async (req, res) => {
     `;
 
     // Send email with AMP support
-    console.log('🔍 Checking nodemailer availability...');
-    if (!nodemailer || !nodemailer.createTransporter) {
-      throw new Error('Nodemailer is not properly loaded');
-    }
+    console.log('🔍 Starting email send process...');
     
     const transporter = createEmailTransporter();
     
