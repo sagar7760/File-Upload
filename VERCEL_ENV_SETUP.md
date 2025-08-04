@@ -10,16 +10,7 @@ Go to your Vercel dashboard → Your Project → Settings → Environment Variab
 
 Add these variables:
 
-```
-MONGODB_URI=mongodb+srv://Sagars:crJ2baTjy9X3q0tx@sagar.k5ggw.mongodb.net/ResumeRefreshment?retryWrites=true&w=majority&appName=Sagar
 
-EMAIL_SERVICE=gmail
-EMAIL_USER=sagarsoradi011@gmail.com
-EMAIL_PASS=ehcyaruixbekscug
-
-PORT=3000
-JWT_SECRET=your-super-secret-jwt-key-here
-```
 
 ## 🔧 How to Add Environment Variables:
 

@@ -6,13 +6,29 @@ const { v4: uuidv4 } = require('uuid');
 const uploadTokens = new Map();
 
 const createEmailTransporter = () => {
-  return nodemailer.createTransporter({
-    service: process.env.EMAIL_SERVICE || 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    }
-  });
+  try {
+    console.log('📧 Creating email transporter...');
+    console.log('📦 Nodemailer version:', require('nodemailer/package.json').version);
+    console.log('🔧 Email service:', process.env.EMAIL_SERVICE || 'gmail');
+    
+    const transporter = nodemailer.createTransporter({
+      service: process.env.EMAIL_SERVICE || 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      },
+      // Add additional configuration for Gmail
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+    
+    console.log('✅ Email transporter created successfully');
+    return transporter;
+  } catch (error) {
+    console.error('❌ Error creating email transporter:', error);
+    throw error;
+  }
 };
 
 // Simple body parser for Vercel
@@ -379,7 +395,16 @@ module.exports = async (req, res) => {
     `;
 
     // Send email with AMP support
+    console.log('🔍 Checking nodemailer availability...');
+    if (!nodemailer || !nodemailer.createTransporter) {
+      throw new Error('Nodemailer is not properly loaded');
+    }
+    
     const transporter = createEmailTransporter();
+    
+    // Verify the transporter configuration
+    console.log('🔧 Verifying transporter...');
+    await transporter.verify();
     
     console.log('📧 Attempting to send email...');
     console.log('📝 Email service:', process.env.EMAIL_SERVICE);
