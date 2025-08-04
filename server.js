@@ -424,29 +424,6 @@ app.post('/send-upload-link', emailLimiter, async (req, res) => {
         <button type="submit" class="submit-btn">
           💾 Submit Profile Information
         </button>
-
-        <!-- Success message template (hidden by default) -->
-        <div submit-success>
-          <template type="amp-mustache">
-            <div style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 6px; padding: 15px; margin: 20px 0;">
-              ✅ {{message}}<br>
-              <strong>Profile ID:</strong> {{profileId}}<br>
-              <strong>Submitted:</strong> {{timestamp}}<br>
-              Thank you for updating your profile information!
-            </div>
-          </template>
-        </div>
-
-        <!-- Error message template (hidden by default) -->
-        <div submit-error>
-          <template type="amp-mustache">
-            <div style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 6px; padding: 15px; margin: 20px 0;">
-              ❌ Error: {{error}}<br>
-              <small>Please try again or use the web form link below.</small>
-            </div>
-          </template>
-        </div>
-
       </form>
 
       <div class="info-box">
