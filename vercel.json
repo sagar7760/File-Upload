@@ -11,6 +11,10 @@
       "dest": "/api/send-upload-link.js"
     },
     {
+      "src": "/api/send-upload-link",
+      "dest": "/api/send-upload-link.js"
+    },
+    {
       "src": "/api/update-profile",
       "dest": "/api/update-profile.js"
     },
@@ -27,6 +31,10 @@
       "dest": "/api/status.js"
     },
     {
+      "src": "/api/status",
+      "dest": "/api/status.js"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "/api/$1.js"
     },
@@ -38,5 +46,8 @@
       "src": "/(.*)",
       "dest": "/api/index.js"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
