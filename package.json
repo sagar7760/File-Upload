@@ -1,5 +1,5 @@
 {
-  "name": "file-upload-service",
+  "name": "profile-collection-service",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -7,20 +7,28 @@
     "dev": "node server.js",
     "build": "echo 'Build complete'",
     "vercel-build": "echo 'Vercel build complete'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "vercel --prod",
+    "test": "node test-server.js"
   },
-  "keywords": ["file-upload", "email", "express", "nodejs"],
+  "keywords": [
+    "profile-collection",
+    "email",
+    "express",
+    "nodejs",
+    "amp-email",
+    "interactive-email",
+    "data-collection"
+  ],
   "author": "",
   "license": "MIT",
-  "description": "A secure file upload service that sends email links for file uploads",
+  "description": "A secure profile collection service that sends email links for profile information gathering",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "express-rate-limit": "^8.0.1",
-    "fs-extra": "^11.3.0",
     "helmet": "^8.1.0",
-    "multer": "^2.0.2",
+    "mongoose": "^8.17.0",
     "nodemailer": "^7.0.5",
     "path-exists": "^5.0.0",
     "uuid": "^11.1.0"

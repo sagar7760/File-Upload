@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Information</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .radio-option:hover {
+            border-color: #667eea;
+            background-color: #f8f9ff;
+        }
+        
+        .radio-option.selected {
+            border-color: #667eea;
+            background-color: #f0f7ff;
+        }
+        
+        .radio-option input {
+            margin: 0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .alert {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .alert.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .info {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #1976d2;
+            border: 1px solid #2196f3;
+        }
+        
+        .required {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Profile Information</h1>
+        
+        <div class="info">
+            <strong>📝 Please fill out your profile information</strong><br>
+            Fields marked with <span class="required">*</span> are required.
+        </div>
+        
+        <div id="alert" class="alert"></div>
+        
+        <form id="profileForm">
+            <div class="form-group">
+                <label for="fullName">Full Name <span class="required">*</span></label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Are you still working at the same company? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <div class="radio-option" data-value="yes">
+                        <input type="radio" name="companyStatus" value="yes" id="company-yes" required>
+                        <label for="company-yes">✅ Yes, same company</label>
+                    </div>
+                    <div class="radio-option" data-value="no">
+                        <input type="radio" name="companyStatus" value="no" id="company-no" required>
+                        <label for="company-no">🔄 No, changed company</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="currentRole">Current Role/Position</label>
+                <input type="text" id="currentRole" name="currentRole" placeholder="Your current job title">
+            </div>
+            
+            <div class="form-group">
+                <label for="companyName">Current Company</label>
+                <input type="text" id="companyName" name="companyName" placeholder="Your current company name">
+            </div>
+            
+            <div class="form-group">
+                <label for="experienceYears">Years of Experience</label>
+                <input type="number" id="experienceYears" name="experienceYears" min="0" max="50" placeholder="Total years of work experience">
+            </div>
+            
+            <div class="form-group">
+                <label for="newSkills">New Skills Acquired</label>
+                <textarea id="newSkills" name="newSkills" placeholder="List any new skills, certifications, or technologies you've learned..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn" id="submitBtn">💾 Submit Profile Information</button>
+        </form>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Submitting profile information...</p>
+        </div>
+    </div>
+
+    <script>
+        // Get token from URL
+        const token = window.location.pathname.split('/').pop();
+        
+        // Check token validity
+        async function checkTokenValidity() {
+            try {
+                const response = await fetch(`/status/${token}`);
+                const result = await response.json();
+                
+                if (!result.valid) {
+                    document.querySelector('.container').innerHTML = `
+                        <h1>❌ Invalid or Expired Link</h1>
+                        <div class="alert error" style="display: block;">
+                            ${result.message || 'This form link is no longer valid.'}
+                        </div>
+                    `;
+                    return false;
+                }
+                
+                return true;
+            } catch (error) {
+                console.error('Error checking token:', error);
+                return false;
+            }
+        }
+        
+        // Handle radio button selection
+        document.querySelectorAll('.radio-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const radioInput = this.querySelector('input[type="radio"]');
+                const groupName = radioInput.name;
+                
+                // Remove selected class from all options in this group
+                document.querySelectorAll(`input[name="${groupName}"]`).forEach(input => {
+                    input.closest('.radio-option').classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                radioInput.checked = true;
+            });
+        });
+        
+        // Handle form submission
+        document.getElementById('profileForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Add token to data
+            data.token = token;
+            
+            const alertDiv = document.getElementById('alert');
+            const loadingDiv = document.getElementById('loading');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Reset alert
+            alertDiv.style.display = 'none';
+            alertDiv.className = 'alert';
+            
+            // Show loading
+            loadingDiv.style.display = 'block';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch('/api/update-profile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alertDiv.className = 'alert success';
+                    alertDiv.innerHTML = `
+                         ${result.message}<br>
+                        <strong>Profile ID:</strong> ${result.profileId}<br>
+                        <strong>Submitted:</strong> ${new Date(result.timestamp).toLocaleString()}
+                    `;
+                    alertDiv.style.display = 'block';
+                    
+                    // Reset form
+                    this.reset();
+                    document.querySelectorAll('.radio-option').forEach(option => {
+                        option.classList.remove('selected');
+                    });
+                } else {
+                    throw new Error(result.error || 'Failed to submit profile');
+                }
+                
+            } catch (error) {
+                alertDiv.className = 'alert error';
+                alertDiv.textContent = `❌ Error: ${error.message}`;
+                alertDiv.style.display = 'block';
+            } finally {
+                loadingDiv.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Check token when page loads
+        checkTokenValidity();
+    </script>
+</body>
+</html>

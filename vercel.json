@@ -11,8 +11,16 @@
       "dest": "/api/send-upload-link.js"
     },
     {
-      "src": "/upload/(.*)",
-      "dest": "/api/upload.js"
+      "src": "/api/update-profile",
+      "dest": "/api/update-profile.js"
+    },
+    {
+      "src": "/api/profiles",
+      "dest": "/api/profiles.js"
+    },
+    {
+      "src": "/profile/(.*)",
+      "dest": "/public/profile.html"
     },
     {
       "src": "/status/(.*)",

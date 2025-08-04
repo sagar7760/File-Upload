@@ -10,7 +10,7 @@ module.exports = (req, res) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Upload Service</title>
+    <title>Profile Collection Service</title>
     <style>
         * {
             margin: 0;
@@ -162,7 +162,7 @@ module.exports = (req, res) => {
 </head>
 <body>
     <div class="container">
-        <h1>📧 File Upload Service</h1>
+        <h1>� Profile Collection Service</h1>
         
         <div class="warning">
             <strong>⚠️ Demo Mode</strong> 
@@ -183,10 +183,10 @@ module.exports = (req, res) => {
             
             <div class="form-group">
                 <label for="message">Message (Optional)</label>
-                <textarea id="message" name="message" placeholder="Enter a message to include with the upload request..."></textarea>
+                <textarea id="message" name="message" placeholder="Enter a message to include with the profile collection request..."></textarea>
             </div>
             
-            <button type="submit" class="btn" id="sendBtn">Send Upload Link</button>
+            <button type="submit" class="btn" id="sendBtn">Send Profile Collection Link</button>
         </form>
         
         <div class="loading" id="loading">
@@ -199,9 +199,9 @@ module.exports = (req, res) => {
             <ul style="margin-top: 10px; margin-left: 20px;">
                 <li>Enter the recipient's email address</li>
                 <li>Add an optional message</li>
-                <li>The recipient will receive an email with a secure upload link</li>
+                <li>The recipient will receive an email with a secure profile form link</li>
                 <li>The link expires in 24 hours</li>
-                <li>Supported files: PDF, DOC, DOCX, TXT, RTF (max 10MB each)</li>
+                <li>Profile data is stored locally and can be exported later</li>
             </ul>
         </div>
     </div>
@@ -238,7 +238,7 @@ module.exports = (req, res) => {
                 
                 if (response.ok) {
                     alertDiv.className = 'alert success';
-                    alertDiv.textContent = \`✅ Upload link sent successfully to \${data.recipientEmail}!\`;
+                    alertDiv.textContent = \`✅ Profile collection link sent successfully to \${data.recipientEmail}!\`;
                     alertDiv.style.display = 'block';
                     this.reset();
                 } else {
