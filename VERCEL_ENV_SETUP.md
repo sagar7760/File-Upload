@@ -12,17 +12,7 @@ Add these variables:
 
 
 
-## 🔧 How to Add Environment Variables:
 
-1. Go to https://vercel.com/dashboard
-2. Select your project (File-Upload)
-3. Go to "Settings" tab
-4. Click "Environment Variables" in the sidebar
-5. Add each variable:
-   - Name: `MONGODB_URI`
-   - Value: `mongodb+srv://Sagars:crJ2baTjy9X3q0tx@sagar.k5ggw.mongodb.net/ResumeRefreshment?retryWrites=true&w=majority&appName=Sagar`
-   - Environment: Production, Preview, Development (select all)
-6. Repeat for all variables above
 
 ## 🔄 After Adding Environment Variables:
 
