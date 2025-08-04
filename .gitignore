@@ -3,30 +3,30 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+jspm_packages/
 
 # Environment variables
 .env
-
-# Profile data storage (for local development)
-data/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env.backup
 
 # Logs
-logs
+logs/
 *.log
+error.log
+debug.log
 
 # Runtime data
-pids
+pids/
 *.pid
 *.seed
 *.pid.lock
 
 # Coverage directory used by tools like istanbul
 coverage/
-
-# Dependency directories
-node_modules/
-jspm_packages/
 
 # Optional npm cache directory
 .npm
@@ -40,11 +40,46 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
+# Build outputs
+.next/
+dist/
+build/
 
-# next.js build output
-.next
+# Database files (local development)
+data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Testing files
+test-*.js
+debug-*.js
+cleanup-*.js
+
+# Development and deployment files
+*.bat
+*.cmd
+MIGRATION_SUMMARY.md
+VERCEL_DEPLOYMENT.md
+DEPLOYMENT_GUIDE.md
+
+# Test and demo files
+test-form.html
+admin.html
+template.html
+
+# Development uploads directory with actual files
+uploads/*
+!uploads/.gitkeep
+
+# Backup files
+*.bak
+*.backup
+config.backup.js
+
+# Temporary files
+*.tmp
+*.temp
 
 # OS generated files
 .DS_Store
@@ -56,53 +91,14 @@ ehthumbs.db
 Thumbs.db
 
 # IDE files
+.vscode/settings.json
+.vscode/launch.json
 .vscode/tasks.json
 .idea/
 *.swp
 *.swo
 *~
 
-# Temporary files
-*.tmp
-*.temp
-
-# Testing files
-test-*.js
-debug-*.js
-cleanup-*.js
-
-# Development and deployment files
-*.bat
-MIGRATION_SUMMARY.md
-VERCEL_DEPLOYMENT.md
-DEPLOYMENT_GUIDE.md
-
-# VS Code workspace files
-.vscode/settings.json
-.vscode/launch.json
-
-# Database files (local development)
-*.db
-*.sqlite
-*.sqlite3
-
-# Backup files
-*.bak
-*.backup
-
-# Development uploads directory with actual files
-uploads/*
-!uploads/.gitkeep
-
-# Test and demo files
-test-form.html
-admin.html
-template.html
-
-# Local configuration backups
-*.env.backup
-config.backup.js
-
-# Error logs
-error.log
-debug.log
+# Package managers
+package-lock.json.bak
+yarn.lock.bak
